@@ -1,7 +1,11 @@
 (ns user-storage-app.core
   (:require [clojure.data.csv :as csv]
-            [clojure.string :refer [lower-case]])
+            [clojure.string :refer [lower-case]]
+            [clj-time.format :as f]
+            )
   (:gen-class))
+
+(def american-format (f/formatter "MM/DD/YY"))
 
 (def users (atom []))
 
@@ -19,16 +23,26 @@
         (map #(swap! users conj %) (map #(zipmap my-keys %) data))))))
 
 
-;; todo: last names
 (defn first-sort
-  "print users sorted by females first, then males. Each gender is further sorted
+  "returns users sorted by females first, then males. Each gender is further sorted
    by ascending last names"
   [x]
   (conj
     (sort-by #(str (:last %)) (filter #(= (compare "Male"  (:gender %)) 0 ) x))
     (sort-by #(str (:last %)) (filter #(= (compare "Female"  (:gender %)) 0 ) x))))
 
+(defn second-sort
+  "returns users sorted by date of birth in ascending order"
+  [x]
+    (sort-by #(f/parse american-format (:date-of-birth %)) x))
+
+(defn third-sort
+  "sort by last name, descending order"
+  [x]
+    (reverse (sort-by #(str (:last %)) x)))
+
+
 (defn -main
   [filename & args]
   (read-in-users filename)
-  (println (first-sort @users)))
+  (println (third-sort @users)))
