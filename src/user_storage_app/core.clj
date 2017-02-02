@@ -15,13 +15,15 @@
 ;Thought about breaking this apart, but - program requirements
 ;Explicitly require adding only one line in a post
 (defn read-in-users
-  "Populates users collection from input CSV file"
-  [filename]
+  "Populates users collection from input CSV file
+   must pass in delimiter as char"
+  [filename delimiter]
   (with-open [input-file (clojure.java.io/reader filename)]
     (doall
-      (let [data (csv/read-csv input-file)]
+      (let [data (csv/read-csv input-file :delimiter delimiter)]
         (map #(swap! users conj %) (map #(zipmap my-keys %) data))))))
 
+;todo: force lower case for comparisons
 
 (defn first-sort
   "returns users sorted by females first, then males. Each gender is further sorted
@@ -44,5 +46,7 @@
 
 (defn -main
   [filename & args]
-  (read-in-users filename)
+  (read-in-users filename \,)
+  ;(read-in-users filename \|)
+  ;(read-in-users filename \space)
   (println (third-sort @users)))
