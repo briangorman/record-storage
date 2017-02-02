@@ -5,6 +5,7 @@
             [clj-time.format :as f]
             [user-storage-app.handler :as handler]
             [user-storage-app.db :refer [users]]
+            [user-storage-app.sorts :as sorts]
             [ring.adapter.jetty :as jetty]
             )
   (:gen-class))
@@ -27,24 +28,6 @@
 
 ;todo: force lower case for comparisons
 
-(defn first-sort
-  "returns users sorted by females first, then males. Each gender is further sorted
-   by ascending last names"
-  [x]
-  (conj
-    (sort-by #(str (:last %)) (filter #(= (compare "Male"  (:gender %)) 0 ) x))
-    (sort-by #(str (:last %)) (filter #(= (compare "Female"  (:gender %)) 0 ) x))))
-
-(defn second-sort
-  "returns users sorted by date of birth in ascending order"
-  [x]
-    (sort-by #(f/parse american-format (:date-of-birth %)) x))
-
-(defn third-sort
-  "sort by last name, descending order"
-  [x]
-    (reverse (sort-by #(str (:last %)) x)))
-
 
 (defn -main
   "pipe comma space"
@@ -52,6 +35,6 @@
   (read-in-users pipe-file \|)
   (read-in-users comma-file \,)
   (read-in-users space-file \space)
-  (println (third-sort @users))
+  (println (sorts/third-sort @users))
   (jetty/run-jetty handler/app {:port 3000})
   )
