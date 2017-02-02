@@ -4,13 +4,12 @@
             [clojure.string :refer [lower-case]]
             [clj-time.format :as f]
             [user-storage-app.handler :as handler]
+            [user-storage-app.db :refer [users]]
             [ring.adapter.jetty :as jetty]
             )
   (:gen-class))
 
 (def american-format (f/formatter "MM/DD/YY"))
-
-(def users (atom []))
 
 (def my-keys [:last :first :gender :favorite-color :date-of-birth])
 
