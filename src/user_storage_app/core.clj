@@ -8,15 +8,18 @@
    [ring.adapter.jetty :as jetty])
   (:gen-class))
 
-(def american-format (f/formatter "MM/DD/YY"))
-
 (defn -main
   "pipe comma space"
   [pipe-file comma-file space-file & args]
   (read-in-users pipe-file \|)
   (read-in-users comma-file \,)
   (read-in-users space-file \space)
-  (println @users)
-  ;(println (sorts/age-sort @users))
-  ;(println (sorts/date-of-birth-sort @users))
+
+  (println "Sortd by Gender, then Last name ascending")
+  (println (sorts/gender-sort @users))
+  (println "Sortd by birth date, ascending")
+  (println (sorts/date-of-birth-sort @users))
+  (println "Sortd by names, descending")
+  (println (sorts/last-name-sort @users))
+  (println "Launching websever")
   (jetty/run-jetty handler/app {:port 3000}))

@@ -12,16 +12,16 @@
   "returns users sorted by females first, then males. Each gender is further sorted
    by ascending last names"
   [x]
-  (conj
-   (sort-by #(str (:last-name %)) (filter #(= (compare "Male"  (:gender %)) 0) x))
-   (sort-by #(str (:last-name %)) (filter #(= (compare "Female"  (:gender %)) 0) x))))
+  (concat
+   (sort-by #(str (lower-case (:last-name %))) (filter #(= (compare "female" (lower-case (:gender %))) 0) x))
+   (sort-by #(str (lower-case (:last-name %))) (filter #(= (compare "male"  (lower-case (:gender %))) 0) x))))
 
 (defn date-of-birth-sort
   "returns users sorted by date of birth in ascending order"
   [x]
   (sort-by #(f/parse american-format (:date-of-birth %)) x))
 
-(defn age-sort
+(defn last-name-sort
   "sort by last name, descending order"
   [x]
-  (reverse (sort-by #(str (:last-name %)) x)))
+  (reverse (sort-by #(str (lower-case (:last-name %))) x)))

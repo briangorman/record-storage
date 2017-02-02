@@ -17,7 +17,7 @@
 
 (defn- name-handler [request]
   (response/ok
-   (sorts/age-sort @users)))
+   (sorts/last-name-sort @users)))
 
 ; Ideally, we would enforce a data schema here
 ; For now, I just limit insertions to one entity as requested
@@ -26,7 +26,7 @@
  ; (println (:type (:body request)))
   ;(doall (swap! users conj (csv/parse-csv (slurp (:body request) :delimiter \,))))
   ;(doall (println (csv/parse-csv (slurp (:body request) :delimiter \,))))
-  (read-in-single-user (slurp (:body request)) \,)
+  (if (some? request) (read-in-single-user (slurp (:body request)) \,))
 
   ;(first (csv/parse-csv request
   (response/ok))
