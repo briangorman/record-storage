@@ -11,6 +11,7 @@
                  [ring/ring-defaults "0.2.1"]
                  [metosin/ring-http-response "0.6.5"]
                  [ring/ring-json "0.4.0"]
+                 [cheshire "5.7.0"]
                  ]
   :plugins [[lein-ring "0.9.7"]
             [lein-cljfmt "0.5.6"]]
