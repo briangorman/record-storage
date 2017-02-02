@@ -21,9 +21,9 @@
 (deftest test-date-of-birth-sort
   (testing "testing data of birth sort"
     (let [data (date-of-birth-sort test-data)]
-      ;(is (= 0 (compare (:last-name (nth data 0)) "vick" )))
-      ;(is (= 0 (compare (:last-name (nth data 1 )) "Zulu" )))
-      ;(is (= 0 (compare (:last-name (nth data 2 )) "Abraham" )))
+      (is (= 0 (compare (:last-name (nth data 0)) "vick" )))
+      (is (= 0 (compare (:last-name (nth data 1 )) "Zulu" )))
+      (is (= 0 (compare (:last-name (nth data 2 )) "Abraham" )))
       (is (= 0 (compare (:last-name (nth data 3)) "Smith" ))))))
 
 (deftest test-last-name-sort
