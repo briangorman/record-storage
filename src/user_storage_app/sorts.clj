@@ -27,3 +27,9 @@
   [x]
     (reverse (sort-by #(str (:last %)) x)))
 
+
+(defn gender-sort
+  [x]
+  (conj
+    (filter #(= (compare "Male"  (:gender %)) 0 ) x)
+    (filter #(= (compare "Female"  (:gender %)) 0 ) x)))

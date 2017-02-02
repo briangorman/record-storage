@@ -10,6 +10,7 @@
                  [ring "1.4.0"]
                  [ring/ring-defaults "0.2.1"]
                  [metosin/ring-http-response "0.6.5"]
+                 [ring/ring-json "0.4.0"]
                  ]
   :plugins [[lein-ring "0.9.7"]]
   :ring {:handler user-storage-app.handler/app}
