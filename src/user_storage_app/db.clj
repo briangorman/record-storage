@@ -4,7 +4,7 @@
 
 (def users (atom []))
 
-(def user-keys [:last :first :gender :favorite-color :date-of-birth])
+(def user-keys [:last-name :first-name :gender :favorite-color :date-of-birth])
 
 (defn read-in-users
   "Populates users collection from input CSV file

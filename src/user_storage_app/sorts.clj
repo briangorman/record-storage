@@ -13,8 +13,8 @@
    by ascending last names"
   [x]
   (conj
-   (sort-by #(str (:last %)) (filter #(= (compare "Male"  (:gender %)) 0) x))
-   (sort-by #(str (:last %)) (filter #(= (compare "Female"  (:gender %)) 0) x))))
+   (sort-by #(str (:last-name %)) (filter #(= (compare "Male"  (:gender %)) 0) x))
+   (sort-by #(str (:last-name %)) (filter #(= (compare "Female"  (:gender %)) 0) x))))
 
 (defn date-of-birth-sort
   "returns users sorted by date of birth in ascending order"
@@ -24,4 +24,4 @@
 (defn age-sort
   "sort by last name, descending order"
   [x]
-  (reverse (sort-by #(str (:last %)) x)))
+  (reverse (sort-by #(str (:last-name %)) x)))
