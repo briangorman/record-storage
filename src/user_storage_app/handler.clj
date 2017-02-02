@@ -1,10 +1,11 @@
 (ns user-storage-app.handler
-  (:require [compojure.core :refer :all]
+  (:require [compojure.core :as compojure]
             [compojure.route :as route]
+            [ring.util.http-response :as response]
             [ring.middleware.defaults :refer [wrap-defaults site-defaults]]))
 
-(defroutes app-routes
-  (GET "/" [] "Hello World")
+(compojure/defroutes app-routes
+  (compojure/GET "/" [] "Hello World")
   (route/not-found "Not Found"))
 
 (def app

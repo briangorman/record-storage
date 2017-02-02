@@ -3,6 +3,8 @@
             [clojure-csv.core :as csv]
             [clojure.string :refer [lower-case]]
             [clj-time.format :as f]
+            [user-storage-app.handler :as handler]
+            [ring.adapter.jetty :as jetty]
             )
   (:gen-class))
 
@@ -51,4 +53,6 @@
   (read-in-users pipe-file \|)
   (read-in-users comma-file \,)
   (read-in-users space-file \space)
-  (println (third-sort @users)))
+  (println (third-sort @users))
+  (jetty/run-jetty handler/app {:port 3000})
+  )
