@@ -9,7 +9,7 @@
 
 ;todo: force lower case for comparisons
 
-(defn first-sort
+(defn gender-sort
   "returns users sorted by females first, then males. Each gender is further sorted
    by ascending last names"
   [x]
@@ -17,19 +17,12 @@
     (sort-by #(str (:last %)) (filter #(= (compare "Male"  (:gender %)) 0 ) x))
     (sort-by #(str (:last %)) (filter #(= (compare "Female"  (:gender %)) 0 ) x))))
 
-(defn second-sort
+(defn date-of-birth-sort
   "returns users sorted by date of birth in ascending order"
   [x]
     (sort-by #(f/parse american-format (:date-of-birth %)) x))
 
-(defn third-sort
+(defn age-sort
   "sort by last name, descending order"
   [x]
     (reverse (sort-by #(str (:last %)) x)))
-
-
-(defn gender-sort
-  [x]
-  (conj
-    (filter #(= (compare "Male"  (:gender %)) 0 ) x)
-    (filter #(= (compare "Female"  (:gender %)) 0 ) x)))

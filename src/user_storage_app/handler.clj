@@ -7,15 +7,22 @@
             [user-storage-app.db :refer [users]]
             [user-storage-app.sorts :as sorts]))
 
-(defn gender-handler [request]
+(defn- gender-handler [request]
   (response/ok
     (sorts/gender-sort @users)))
 
+(defn- birth-date-handler [request]
+  (response/ok
+    (sorts/date-of-birth-sort @users)))
+
+(defn- name-handler [request]
+  (response/ok
+    (sorts/age-sort @users)))
+
 (compojure/defroutes app-routes
-  ;(compojure/POST "/records" [] "Hello World")
-  (compojure/GET "/records/gender" request gender-handler)
-  (compojure/GET "/records/birthdate" [] "Hello World")
-  (compojure/GET "/records/name" [] "Hello World")
+  (compojure/GET "/records/gender" [] gender-handler)
+  (compojure/GET "/records/birthdate" [] birth-date-handler)
+  (compojure/GET "/records/name" [] name-handler)
   (route/not-found "Not Found"))
 
 (def app
