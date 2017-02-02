@@ -9,15 +9,15 @@
 
 (defn- gender-handler [request]
   (response/ok
-    (sorts/gender-sort @users)))
+   (sorts/gender-sort @users)))
 
 (defn- birth-date-handler [request]
   (response/ok
-    (sorts/date-of-birth-sort @users)))
+   (sorts/date-of-birth-sort @users)))
 
 (defn- name-handler [request]
   (response/ok
-    (sorts/age-sort @users)))
+   (sorts/age-sort @users)))
 
 ; Ideally, we would enforce a data schema here
 ; For now, I just limit insertions to one entity as requested

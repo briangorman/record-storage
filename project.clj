@@ -12,7 +12,8 @@
                  [metosin/ring-http-response "0.6.5"]
                  [ring/ring-json "0.4.0"]
                  ]
-  :plugins [[lein-ring "0.9.7"]]
+  :plugins [[lein-ring "0.9.7"]
+            [lein-cljfmt "0.5.6"]]
   :ring {:handler user-storage-app.handler/app}
   :main ^:skip-aot user-storage-app.core
   :profiles
