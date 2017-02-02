@@ -1,5 +1,6 @@
 (ns user-storage-app.core
-  (:require [clojure.data.csv :as csv]
+  (:require 
+            [clojure-csv.core :as csv]
             [clojure.string :refer [lower-case]]
             [clj-time.format :as f]
             )
@@ -20,7 +21,7 @@
   [filename delimiter]
   (with-open [input-file (clojure.java.io/reader filename)]
     (doall
-      (let [data (csv/read-csv input-file :delimiter delimiter)]
+      (let [data (csv/parse-csv input-file :delimiter delimiter)]
         (map #(swap! users conj %) (map #(zipmap my-keys %) data))))))
 
 ;todo: force lower case for comparisons
@@ -45,8 +46,9 @@
 
 
 (defn -main
-  [filename & args]
-  (read-in-users filename \,)
-  ;(read-in-users filename \|)
-  ;(read-in-users filename \space)
+  "pipe comma space"
+  [pipe-file comma-file space-file & args]
+  (read-in-users pipe-file \|)
+  (read-in-users comma-file \,)
+  (read-in-users space-file \space)
   (println (third-sort @users)))

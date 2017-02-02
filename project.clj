@@ -4,7 +4,7 @@
   :url "http://github.com/briangorman"
   :min-lein-version "2.0.0"
   :dependencies [[org.clojure/clojure "1.8.0"]
-                 [org.clojure/data.csv "0.1.3"]
+                 [clojure-csv/clojure-csv "2.0.1"]
                  [compojure "1.5.1"]
                  [clj-time "0.13.0"]
                  [ring/ring-defaults "0.2.1"]]
