@@ -7,7 +7,8 @@
 (def american-format (f/formatter "MM/DD/YY"))
 
 (defn gender-sort
-  "returns users sorted by females first, then males. Each gender is further sorted
+  "returns users sorted by females first,
+   then males. Each gender is further sorted
    by ascending last names"
   [x]
   (concat

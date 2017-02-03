@@ -23,15 +23,11 @@
 ; For now, I just limit insertions to one entity as requested
 ; This handler only deals with raw responses
 (defn- new-record-handler [request]
- ; (println (:type (:body request)))
-  ;(doall (swap! users conj (csv/parse-csv (slurp (:body request) :delimiter \,))))
-  ;(doall (println (csv/parse-csv (slurp (:body request) :delimiter \,))))
-  (if (some? request) (read-in-single-user (slurp (:body request)) \,))
-
-  ;(first (csv/parse-csv request
+  (if (some? request)
+    (read-in-single-user
+      (slurp (:body request)) \,))
   (response/ok))
 
-;#(swap! users conj %)
 
 (compojure/defroutes app-routes
   (compojure/POST "/records" request new-record-handler)

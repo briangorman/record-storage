@@ -8,10 +8,13 @@
 (defn db-fixture 
   [f]
   (reset! users [])
-  (swap! users conj {:last-name "last", :first-name "first", :date-of-birth "07/01/1978", :favorite-color "Yellow", :gender "Female"})
+  (swap! users conj {:last-name "last",
+                     :first-name "first",
+                     :date-of-birth "07/01/1978",
+                     :favorite-color "Yellow",
+                     :gender "Female"})
   (f)
-  (reset! users [])
-  )
+  (reset! users []))
 
 (use-fixtures :each db-fixture)
 

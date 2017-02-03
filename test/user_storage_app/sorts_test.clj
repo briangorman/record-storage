@@ -3,10 +3,27 @@
             [user-storage-app.sorts :refer :all]))
 
 (def test-data  
-  (vector {:gender "Male", :last-name "Zulu", :date-of-birth "01/01/1992", :favorite-color "Blue", :first-name "Tony"}
-        {:gender "Male", :last-name "Abraham", :date-of-birth "02/02/1993", :favorite-color "Black", :first-name "Antonio"}
-        {:gender "female", :last-name "vick", :date-of-birth "03/11/1989", :favorite-color "Brown", :first-name "Mindy"}
-        {:gender "Female", :last-name "Smith", :date-of-birth "10/12/2007", :favorite-color "White", :first-name "Karen"}))
+  (vector
+    {:gender "Male",
+     :last-name "Zulu",
+     :date-of-birth "01/01/1992",
+     :favorite-color "Blue",
+     :first-name "Tony"}
+    {:gender "Male",
+     :last-name "Abraham",
+     :date-of-birth "02/02/1993",
+     :favorite-color "Black",
+     :first-name "Antonio"}
+    {:gender "female",
+     :last-name "vick",
+     :date-of-birth "03/11/1989",
+     :favorite-color "Brown",
+     :first-name "Mindy"}
+    {:gender "Female",
+     :last-name "Smith",
+     :date-of-birth "10/12/2007",
+     :favorite-color "White",
+     :first-name "Karen"}))
 
 
 (deftest test-gender-sort
