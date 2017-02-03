@@ -3,7 +3,7 @@
             [user-storage-app.sorts :refer :all]
             [user-storage-app.db :refer :all]))
 
-(defn db-fixture 
+(defn db-fixture
   [f]
   (reset! users [])
   (f))
@@ -14,11 +14,11 @@
 
 (deftest test-read-in-single-user
   (testing "Test reading in users"
-      (read-in-single-user test-data \,) 
-      (is (= (count @users) 1))))
+    (read-in-single-user test-data \,)
+    (is (= (count @users) 1))))
 
 (deftest test-read-in-multiple-users
   (testing "Test reading in users"
-      (read-in-users test-data \,) 
-      (is (= (count @users) 2))))
+    (read-in-users test-data \,)
+    (is (= (count @users) 2))))
 

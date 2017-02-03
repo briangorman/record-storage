@@ -25,9 +25,8 @@
 (defn- new-record-handler [request]
   (if (some? request)
     (read-in-single-user
-      (slurp (:body request)) \,))
+     (slurp (:body request)) \,))
   (response/ok))
-
 
 (compojure/defroutes app-routes
   (compojure/POST "/records" request new-record-handler)

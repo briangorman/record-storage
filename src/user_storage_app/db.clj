@@ -14,9 +14,8 @@
   "Adds records from input CSV file must pass in delimiter as char"
   [filename delimiter]
   (doall
-    (let [data (csv/parse-csv filename :delimiter delimiter)]
-      (map #(swap! users conj %) (map #(zipmap user-keys %) data)))))
-
+   (let [data (csv/parse-csv filename :delimiter delimiter)]
+     (map #(swap! users conj %) (map #(zipmap user-keys %) data)))))
 
 (defn read-in-single-user
   "Adds single record from csv. Must pass in delimiter as char"
