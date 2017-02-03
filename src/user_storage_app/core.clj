@@ -11,9 +11,12 @@
 (defn -main
   "pipe comma space"
   [pipe-file comma-file space-file & args]
-  (read-in-users pipe-file \|)
-  (read-in-users comma-file \,)
-  (read-in-users space-file \space)
+  (with-open [pipe-reader  (clojure.java.io/reader pipe-file)
+              comma-reader (clojure.java.io/reader comma-file)
+              space-reader  (clojure.java.io/reader space-file)]
+    (read-in-users pipe-reader \|)
+    (read-in-users comma-reader \,)
+    (read-in-users space-reader \space))
 
   (println "Sortd by Gender, then Last name ascending")
   (println (sorts/gender-sort @users))

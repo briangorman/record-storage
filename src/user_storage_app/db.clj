@@ -10,10 +10,10 @@
   "Populates users collection from input CSV file
    must pass in delimiter as char"
   [filename delimiter]
-  (with-open [input-file (clojure.java.io/reader filename)]
-    (doall
-     (let [data (csv/parse-csv input-file :delimiter delimiter)]
-       (map #(swap! users conj %) (map #(zipmap user-keys %) data))))))
+  (doall
+    (let [data (csv/parse-csv filename :delimiter delimiter)]
+      (map #(swap! users conj %) (map #(zipmap user-keys %) data)))))
+
 
 (defn read-in-single-user
   "Populates users collection from input CSV file
