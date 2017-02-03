@@ -6,8 +6,6 @@
 
 (def american-format (f/formatter "MM/DD/YY"))
 
-;todo: force lower case for comparisons
-
 (defn gender-sort
   "returns users sorted by females first, then males. Each gender is further sorted
    by ascending last names"
