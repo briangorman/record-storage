@@ -8,6 +8,10 @@
    [ring.adapter.jetty :as jetty])
   (:gen-class))
 
+(defn- display-data
+  [x]
+  (doall (map #(println (:last-name %) (:first-name %) (:gender %) (:favorite-color %) (:date-of-birth %)) x)))
+
 (defn -main
   "pipe comma space"
   [pipe-file comma-file space-file & args]
@@ -18,11 +22,12 @@
     (read-in-users comma-reader \,)
     (read-in-users space-reader \space))
 
-  (println "Sortd by Gender, then Last name ascending")
-  (println (sorts/gender-sort @users))
-  (println "Sortd by birth date, ascending")
-  (println (sorts/date-of-birth-sort @users))
-  (println "Sortd by names, descending")
-  (println (sorts/last-name-sort @users))
+  (println "Output data sorted by gender, then last name ascending:\n" )
+  (display-data (sorts/gender-sort @users))
+  (println "Output data sorted by date of birth ascending:\n" )
+  (display-data (sorts/date-of-birth-sort @users))
+  (println "Output data sorted by gender, then last name descending:\n" )
+  (display-data (sorts/last-name-sort @users))
   (println "Launching websever")
+  (flush)
   (jetty/run-jetty handler/app {:port 3000}))
