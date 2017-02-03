@@ -26,7 +26,7 @@
   (display-data (sorts/gender-sort @users))
   (println "Output data sorted by date of birth ascending:\n" )
   (display-data (sorts/date-of-birth-sort @users))
-  (println "Output data sorted by gender, then last name descending:\n" )
+  (println "Output data sorted last name descending:\n" )
   (display-data (sorts/last-name-sort @users))
   (println "Launching websever")
   (flush)
